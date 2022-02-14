@@ -17,20 +17,24 @@ public class solution1 {
 
     public static void actualMemorySize(String memorySize) {
         if (memorySize.contains("GB")) {
-            double actualMem = Integer.parseInt(memorySize.substring(0,memorySize.indexOf("G"))) * memLoss;
-            System.out.printf("%.2fGB%n", actualMem);
+            double actualMem = Double.parseDouble(memorySize.substring(0,memorySize.indexOf("G"))) * memLoss;
+            if (actualMem >1) System.out.printf("%.2fGB%n", actualMem);
+            else {
+                actualMem*=(double) 1024;
+                System.out.printf("%.2fMB%n", actualMem);
+            }
         }
         else if (memorySize.contains("MB")) {
-            double actualMem = Integer.parseInt(memorySize.substring(0,memorySize.indexOf("M"))) * memLoss;
+            double actualMem = Double.parseDouble(memorySize.substring(0,memorySize.indexOf("M"))) * memLoss;
             System.out.printf("%.2fMB%n", actualMem);
         }
         else if (memorySize.contains("KB")) {
-            double actualMem = Integer.parseInt(memorySize.substring(0,memorySize.indexOf("K"))) * memLoss;
+            double actualMem = Double.parseDouble(memorySize.substring(0,memorySize.indexOf("K"))) * memLoss;
             System.out.printf("%.2fKB%n", actualMem);
         }
     }
     public static void main(String[] args) {
-        String[] list = {"1024GB","32GB", "512MB", "256KB"};
+        String[] list = {"1024GB","32GB", ".99GB", "512MB", "256KB"};
         for (String s : list) {
             actualMemorySize(s);
         }
